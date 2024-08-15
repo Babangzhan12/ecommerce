@@ -41,6 +41,14 @@ public class PenggunaController {
     @PutMapping("/penggunas")
     public Pengguna edit(@RequestBody Pengguna pengguna) {
         return penggunaService.edit(pengguna);
+    
+    }
+
+    @PutMapping("/profile")
+    public Pengguna updateProfile(@RequestBody Pengguna pengguna) {
+        Pengguna old = penggunaService.findById(pengguna.getId());
+        pengguna.setPassword(old.getPassword());
+        return penggunaService.edit(pengguna);
     }
 
     @DeleteMapping("/penggunas/{id}")

@@ -22,6 +22,8 @@ public class JwtUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
+    @Value("${jwt.refreshExpirationMs}")
+    private int refreshExpirationMs;
     @Value("${jwt.expirationMs}")
     private int jwtExpirationMs;
     @Value("${jwt.secret}")
@@ -60,5 +62,14 @@ public class JwtUtils {
         .parseClaimsJws(token)
         .getBody()
         .getSubject();
+    }
+
+    public String generateRefreshJwtToken(Authentication authentication){
+        UserDetailsImpl principal = (UserDetailsImpl) authentication.getPrincipal();
+        return Jwts.builder().setSubject((principal.getUsername()))
+        .setIssuedAt(new Date())
+        .setExpiration(new Date((new Date()).getTime() + refreshExpirationMs))
+        .signWith(SignatureAlgorithm.HS512, jwtSecret)
+        .compact();
     }
 }
