@@ -122,7 +122,7 @@ public class PesananService {
             throw new BadRequestException(
                     "Penerimaan gagal, status pesanan saat ini adalah " + pesanan.getStatusPesanan().name());
         }
-        pesanan.setStatusPesanan(StatusPesanan.DIBATALKAN);
+        pesanan.setStatusPesanan(StatusPesanan.SELESAI);
         Pesanan saved = pesananRepository.save(pesanan);
         pesananLogService.createLog(userId, saved, PesananLogService.DIBATALKAN, "Pesanan sukses dibatalkan");
         return saved;

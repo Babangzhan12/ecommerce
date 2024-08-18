@@ -36,7 +36,7 @@ public class PesananController {
     }
 
     @PatchMapping("/pesanans/{pesananId}/cancel")
-    @PreAuthorize("hasAuthority('user')")
+    @PreAuthorize("hasAuthority('User')")
     public Pesanan cancelPesananUser(
         @AuthenticationPrincipal UserDetailsImpl user, @PathVariable("pesananId") String pesananId
     ){
@@ -52,7 +52,7 @@ public class PesananController {
     }
 
     @PatchMapping("/pesanans/{pesananId}/konfirmasi")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('Admin')")
     public Pesanan konfirmasi(
         @AuthenticationPrincipal UserDetailsImpl user, @PathVariable("pesananId") String pesananId
     ){
@@ -60,14 +60,14 @@ public class PesananController {
     }
 
     @PatchMapping("/pesanans/{pesananId}/packing")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('Admin')")
     public Pesanan packing(
         @AuthenticationPrincipal UserDetailsImpl user, @PathVariable("pesananId") String pesananId
     ){
         return pesananService.packing(pesananId, user.getUsername());
     }
     @PatchMapping("/pesanans/{pesananId}/kirim")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('Admin')")
     public Pesanan kirim(
         @AuthenticationPrincipal UserDetailsImpl user, @PathVariable("pesananId") String pesananId
     ){
@@ -75,13 +75,13 @@ public class PesananController {
     }
 
     @GetMapping("/pesanans")
-    @PreAuthorize("hasAuthority('user')")
+    @PreAuthorize("hasAuthority('User')")
     public List<Pesanan> findAllPesananUser(@AuthenticationPrincipal UserDetailsImpl user, @RequestParam(name = "page", defaultValue = "0", required = false) int page, @RequestParam(name = "limit", defaultValue = "25", required = false) int limit){
         return pesananService.findAllPesananUser(user.getUsername(), page, limit);
     }
 
     @GetMapping("/pesanans/admin")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('Admin')")
     public List<Pesanan> searchh(@AuthenticationPrincipal UserDetailsImpl user, @RequestParam(name = "page", defaultValue = "0", required = false) int page,
     @RequestParam(name = "filterText", defaultValue = "", required = false) String filterText, @RequestParam(name = "limit", defaultValue = "25", required = false) int limit){
         return pesananService.seacrh(filterText, page, limit);
