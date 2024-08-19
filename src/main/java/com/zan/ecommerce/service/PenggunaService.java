@@ -46,8 +46,8 @@ public class PenggunaService {
 
     public Pengguna create(Pengguna pengguna) {
 
-        if (!StringUtils.hasText(pengguna.getId()) || pengguna.getId().length() < 5) {
-            throw new BadRequestException("Username harus diisi dan minimal 5 karakteer");
+        if (!StringUtils.hasText(pengguna.getId()) || pengguna.getId().length() < 4) {
+            throw new BadRequestException("Username harus diisi dan minimal 4 karakteer");
         }
         if(pengguna.getId().contains(" ")){
             throw new BadRequestException("Username tidak boleh mengandung spasi");
@@ -59,7 +59,7 @@ public class PenggunaService {
             throw new BadRequestException("Username " + pengguna.getId() + " sudah terdaftar");
         }
         if (!StringUtils.hasText(pengguna.getPassword()) || pengguna.getPassword().length() < 5) {
-            throw new BadRequestException("Username harus diisi dan minimal 5 karakteer");
+            throw new BadRequestException("Password harus diisi dan minimal 5 karakteer");
         }
         if(pengguna.getPassword().contains(" ")){
             throw new BadRequestException("Password tidak boleh mengandung spasi");

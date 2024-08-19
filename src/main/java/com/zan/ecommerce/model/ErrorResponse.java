@@ -1,9 +1,6 @@
 package com.zan.ecommerce.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-public class ErrorResponse {
+public class ErrorResponse {;
     private String message;
     private int status;
 

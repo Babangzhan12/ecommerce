@@ -39,12 +39,12 @@ public class ProductService {
             throw new BadRequestException("Category tidak boleh kosong");
         }
         if (!StringUtils.hasText(product.getCategory().getId())){
-            throw new BadRequestException("Kategori ID tidak boleh kosong");
+            throw new BadRequestException("Category ID tidak boleh kosong");
         }
 
         categoryRepository.findById(product.getCategory().getId())
         .orElseThrow(()-> new BadRequestException(
-            "Category ID" + product.getCategory().getId() + "tidak ditemukan dalam database"));
+            "Category ID " + product.getCategory().getId() + " tidak ditemukan dalam database"));
         product.setId(UUID.randomUUID().toString());
         return productRepository.save(product);
     }
@@ -65,7 +65,7 @@ public class ProductService {
 
         categoryRepository.findById(product.getCategory().getId())
         .orElseThrow(()-> new BadRequestException(
-            "Category ID" + product.getCategory().getId() + "tidak ditemukan dalam database"));
+            "Category ID " + product.getCategory().getId() + " tidak ditemukan dalam database"));
         return productRepository.save(product);
     }
 
