@@ -28,7 +28,7 @@ public class PesananController {
     private PesananService pesananService;
 
     @PostMapping("/pesanans")
-    @PreAuthorize("hasAuthority('user')")
+    @PreAuthorize("hasAuthority('User')")
     public PesananResponse create(
         @AuthenticationPrincipal UserDetailsImpl user, @RequestBody PesananRequest request
     ){
@@ -44,7 +44,7 @@ public class PesananController {
     }
 
     @PatchMapping("/pesanans/{pesananId}/terima")
-    @PreAuthorize("hasAuthority('user')")
+    @PreAuthorize("hasAuthority('User')")
     public Pesanan terimaPesanan(
         @AuthenticationPrincipal UserDetailsImpl user, @PathVariable("pesananId") String pesananId
     ){
